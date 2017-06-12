@@ -9,13 +9,17 @@ public class Salon {
     private String salonAddress;
     private String phoneNumber;
     private byte[] image;
+    private String login;
+    private String password;
 
-    public Salon(Integer salonId, String salonName, String salonAddress, String phoneNumber, byte[] image) {
+    public Salon(Integer salonId, String salonName, String salonAddress, String phoneNumber, byte[] image, String login, String password) {
         this.salonId = salonId;
         this.salonName = salonName;
         this.salonAddress = salonAddress;
         this.phoneNumber = phoneNumber;
         this.image = image;
+        this.login = login;
+        this.password = password;
     }
 
     public Integer getSalonId() {
@@ -56,5 +60,21 @@ public class Salon {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

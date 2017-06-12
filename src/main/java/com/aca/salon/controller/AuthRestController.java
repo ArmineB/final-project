@@ -2,6 +2,7 @@ package com.aca.salon.controller;
 
 import com.aca.salon.model.dto.SalonInfo;
 import com.aca.salon.model.entity.Salon;
+import com.aca.salon.service.AuthService;
 import com.aca.salon.service.SalonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,45 +14,33 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/auth")
-public class SalonRegistrationRestController {
-    public final SalonService salonService;
- @Autowired
-    public SalonRegistrationRestController(SalonService salonService) {
-        this.salonService = salonService;
-    }
+public class AuthRestController {
 
+    private final AuthService authService;
+
+    @Autowired
+    public AuthRestController(AuthService authService) {
+        this.authService = authService;
+    }
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST,
             consumes = "application/json")
-    public ResponseEntity register(@RequestBody SalonInfo salonInfo){
-        try{
-           salonService.add(salonInfo);
-
-
+    public ResponseEntity registerSalon(@RequestBody SalonInfo salonInfo) {
+        try {
+            authService.add(salonInfo);
             return ResponseEntity.ok(tokenGenerator());
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return new ResponseEntity<>("exception during register", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
 
     @RequestMapping(value = "/sdfs/{userId}", method = RequestMethod.GET)
-    public ResponseEntity foo(@RequestParam String userId){
+    public ResponseEntity foo(@RequestParam String userId) {
         return null;
     }
 
-    public String tokenGenerator(){
-        String s = "";
-        double d;
-        for (int i = 1; i <= 16; i++) {
-            d = Math.random() * 10;
-            s = s + ((int)d);
-            if (i % 4 == 0 && i != 16) {
-                s = s + "-";
-            }
-        }
-        return s;
-    }
+
 
 }

@@ -35,7 +35,7 @@ public class SalonRegistrationRestController {
         }
     }
 
-//    "/sdfs/12"
+
     @RequestMapping(value = "/sdfs/{userId}", method = RequestMethod.GET)
     public ResponseEntity foo(@RequestParam String userId){
         return null;

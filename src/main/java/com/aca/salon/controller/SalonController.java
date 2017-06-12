@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SalonController {
     @RequestMapping("/")
     public String homePage(){
-        return "jsp/index";
+        return "index";
     }
 }

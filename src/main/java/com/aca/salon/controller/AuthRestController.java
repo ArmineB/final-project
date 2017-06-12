@@ -1,9 +1,7 @@
 package com.aca.salon.controller;
 
-import com.aca.salon.model.dto.SalonInfo;
 import com.aca.salon.model.entity.Salon;
 import com.aca.salon.service.AuthService;
-import com.aca.salon.service.SalonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +24,11 @@ public class AuthRestController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST,
             consumes = "application/json")
-    public ResponseEntity registerSalon(@RequestBody SalonInfo salonInfo) {
+    public ResponseEntity registerSalon(@RequestBody Salon salon) {
         try {
-            authService.add(salonInfo);
-            return ResponseEntity.ok(tokenGenerator());
+            String token = authService.add(salon);
+
+            return ResponseEntity.ok(token);
         } catch (RuntimeException e) {
             return new ResponseEntity<>("exception during register", HttpStatus.INTERNAL_SERVER_ERROR);
         }

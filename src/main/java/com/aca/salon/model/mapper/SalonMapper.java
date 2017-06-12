@@ -18,8 +18,10 @@ public class SalonMapper implements RowMapper<Salon> {
         String salonAddress = resultSet.getString(3);
         String phoneNumber = resultSet.getString(4);
         byte[] image = resultSet.getBytes(5);
+        String login = resultSet.getString(6);
+        String password = resultSet.getString(7);
 
-        Salon salon = new Salon(salonId, salonName, salonAddress, phoneNumber,image);
+        Salon salon = new Salon(salonId, salonName, salonAddress, phoneNumber,image,login, password);
 
         return salon;
 

@@ -2,7 +2,8 @@ package com.aca.salon.service;
 
 import com.aca.salon.dao.SalonDao;
 import com.aca.salon.dao.SessionDao;
-import com.aca.salon.model.entity.SalonManager;
+import com.aca.salon.model.entity.Salon;
+import com.aca.salon.model.entity.Session;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,16 +13,22 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final SalonDao salonDao;
     private  final SessionDao sessionDao;
-    private final SalonManager salonManager;
 
-    public AuthService(SalonDao salonDao, SessionDao sessionDao, SalonManager salonManager) {
+
+    public AuthService(SalonDao salonDao, SessionDao sessionDao) {
         this.salonDao = salonDao;
         this.sessionDao = sessionDao;
-        this.salonManager = salonManager;
+
     }
 
 
-    public String add(Salo)
+    public String add(Salon salon){
+       int salonId = salonDao.add(salon);
+       String token = tokenGenerator();
+        Session session = new Session(salonId,token);
+       sessionDao.add(session);
+       return token;
+    }
 
 
     public String tokenGenerator() {

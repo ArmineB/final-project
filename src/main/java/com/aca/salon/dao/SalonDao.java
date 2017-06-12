@@ -33,16 +33,17 @@ public class SalonDao {
 
 
     public int add(Salon salon) {
-        final String sql = "insert into Salon(Name, Address, PhoneNumber,Image) values(?, ?,?,?)";
+        final String sql = "insert into Salon(Name, Address, PhoneNumber,Image,Login, Password) values(? ?,?,?,?,?)";
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, salon.getSalonName());
             ps.setString(2, salon.getSalonAddress());
             ps.setString(3, salon.getPhoneNumber());
-
 //            Blob blob = new SerialBlob(salon.getImage());
             ps.setBytes(4, salon.getImage());
+            ps.setString(5, salon.getLogin());
+            ps.setString(6,salon.getPassword());
 
             return ps;
         }, holder);

@@ -1,7 +1,9 @@
 package com.aca.salon.controller;
 
+import com.aca.salon.model.dto.EmployeeWorkload;
 import com.aca.salon.model.entity.Salon;
 import com.aca.salon.service.AuthService;
+import com.aca.salon.service.EmployeeWorkloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.*;
 public class AuthRestController {
 
     private final AuthService authService;
+    private  final EmployeeWorkloadService employeeWorkloadService;
 
     @Autowired
-    public AuthRestController(AuthService authService) {
+    public AuthRestController(AuthService authService,
+                              EmployeeWorkloadService employeeWorkloadService) {
         this.authService = authService;
+        this.employeeWorkloadService = employeeWorkloadService;
     }
 
 
@@ -35,11 +40,12 @@ public class AuthRestController {
     }
 
 
-    @RequestMapping(value = "/sdfs/{userId}", method = RequestMethod.GET)
-    public ResponseEntity foo(@RequestParam String userId) {
-        return null;
+    @RequestMapping(value = "/fjhfi", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity registerEmployeeWorkload(@RequestBody EmployeeWorkload employeeWorkload) {
+        Integer salonID = null;
+        employeeWorkloadService.add(employeeWorkload, salonID);
+        return  null;
+
     }
 
-
-
-}
+    }

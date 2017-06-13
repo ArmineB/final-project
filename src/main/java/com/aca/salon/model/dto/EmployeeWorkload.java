@@ -1,8 +1,6 @@
 package com.aca.salon.model.dto;
 
-import com.aca.salon.model.enums.WeekDay;
 
-import java.sql.Time;
 
 /**
  * Created by Armine on 13/06/2017.

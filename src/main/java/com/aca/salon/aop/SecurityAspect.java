@@ -1,6 +1,6 @@
 package com.aca.salon.aop;
 
-import com.aca.salon.dao.SalonDao;
+
 import com.aca.salon.dao.SessionDao;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

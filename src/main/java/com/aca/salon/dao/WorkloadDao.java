@@ -1,8 +1,8 @@
 package com.aca.salon.dao;
 
-import com.aca.salon.model.entity.Salon;
+
 import com.aca.salon.model.entity.Workload;
-import com.aca.salon.model.mapper.SalonMapper;
+import com.aca.salon.model.mapper.EmployeeMapper;
 import com.aca.salon.model.mapper.WorkloadMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,12 +24,6 @@ public class WorkloadDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Workload> findAll() {
-        final String sql = "select * from workload";
-        List<Workload> workloads = jdbcTemplate.query(sql, new WorkloadMapper());
-        return workloads;
-
-    }
 
     public int add(Workload workload) {
         final String sql = "insert into Workload(EmployeeId, StartHour, EndHour,WeekDayId) values(?,?,?,?)";
@@ -47,10 +41,10 @@ public class WorkloadDao {
     }
 
 
-    public Workload loadById(Integer id) {
-        final String sql = "select * from Workload where WorkloadID = ?";
-        return jdbcTemplate.queryForObject(sql, new WorkloadMapper(), id);
+
+    public  Workload loadByEmployeeId(Integer employyeId){
+        final String sql = "select * from workload where EmployeeID = ?";
+        return jdbcTemplate.queryForObject(sql, new WorkloadMapper(), employyeId);
 
     }
-
 }

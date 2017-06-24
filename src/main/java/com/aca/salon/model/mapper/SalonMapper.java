@@ -13,13 +13,13 @@ import java.sql.SQLException;
 public class SalonMapper implements RowMapper<Salon> {
     @Override
     public Salon mapRow(ResultSet resultSet, int i) throws SQLException {
-        Integer salonId = resultSet.getInt(1);
-        String salonName = resultSet.getString(2);
-        String salonAddress = resultSet.getString(3);
-        String phoneNumber = resultSet.getString(4);
-        byte[] image = resultSet.getBytes(5);
-        String login = resultSet.getString(6);
-        String password = resultSet.getString(7);
+        Integer salonId = resultSet.getInt("SalonID");
+        String salonName = resultSet.getString("Name");
+        String salonAddress = resultSet.getString("Address");
+        String phoneNumber = resultSet.getString("PhoneNumber");
+        byte[] image = resultSet.getBytes("Image");
+        String login = resultSet.getString("Login");
+        String password = resultSet.getString("Password");
 
         Salon salon = new Salon(salonId, salonName, salonAddress, phoneNumber,image,login, password);
 

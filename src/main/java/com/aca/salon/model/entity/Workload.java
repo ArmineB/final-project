@@ -14,7 +14,7 @@ public class Workload {
     private Time startHour;
     private Time endHour;
 
-    public Workload(Integer workloadId, Integer employeeId, WeekDay weekDay, Time startHour, Time endHour) {
+    public Workload(Integer workloadId, Integer employeeId,  Time startHour, Time endHour,WeekDay weekDay) {
         this.workloadId = workloadId;
         this.weekDay = weekDay;
         this.startHour = startHour;

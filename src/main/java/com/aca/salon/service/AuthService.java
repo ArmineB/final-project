@@ -5,6 +5,7 @@ import com.aca.salon.dao.SessionDao;
 import com.aca.salon.model.entity.Salon;
 import com.aca.salon.model.entity.Session;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 /**
  * Created by Armine on 12/06/2017.
@@ -31,6 +32,21 @@ public class AuthService {
     }
 
 
+    public Integer getSalonIdByToken(String token){
+        return  sessionDao.getSalonIdByToken(token);
+
+    }
+
+    public List<Salon> getAllSalons(){
+        return salonDao.findAll();
+    }
+
+    public List<Salon> getSalons(){
+        return  salonDao.findAll();
+    }
+
+
+
     public String tokenGenerator() {
         String s = "";
         double d;
@@ -43,4 +59,6 @@ public class AuthService {
         }
         return s;
     }
+
+
 }

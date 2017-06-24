@@ -1,6 +1,7 @@
 package com.aca.salon.model.dto;
 
 
+import com.aca.salon.model.enums.WeekDay;
 
 /**
  * Created by Armine on 13/06/2017.
@@ -94,4 +95,6 @@ public class EmployeeWorkload {
     public void setEndHour(String endHour) {
         this.endHour = endHour;
     }
+
+
 }

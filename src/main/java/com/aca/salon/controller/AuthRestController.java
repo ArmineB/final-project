@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 /**
  * Created by Armine on 23/05/2017.
@@ -39,12 +40,20 @@ public class AuthRestController {
         }
     }
 
+    @RequestMapping(value = "/valodik", method = RequestMethod.GET, produces = "application/json")
+    public List<Salon> registerSalon() {
+       return authService.getAllSalons();
+    }
 
-    @RequestMapping(value = "/fjhfi", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity registerEmployeeWorkload(@RequestBody EmployeeWorkload employeeWorkload) {
-        Integer salonID = null;
+
+    @RequestMapping(value = "/createEmployee", method = RequestMethod.POST, consumes = "application/json")
+
+    public void registerEmployeeWorkload(@RequestBody EmployeeWorkload employeeWorkload,
+                                         @RequestHeader("Authorized") String authToken) {
+
+        Integer salonID = authService.getSalonIdByToken(authToken);
         employeeWorkloadService.add(employeeWorkload, salonID);
-        return  null;
+
 
     }
 

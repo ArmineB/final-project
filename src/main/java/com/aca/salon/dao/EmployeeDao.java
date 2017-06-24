@@ -1,8 +1,7 @@
 package com.aca.salon.dao;
 
-import com.aca.salon.model.entity.Client;
+
 import com.aca.salon.model.entity.Employee;
-import com.aca.salon.model.mapper.ClientMapper;
 import com.aca.salon.model.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,16 +17,10 @@ import java.util.List;
 @Repository
 public class EmployeeDao {
     private final JdbcTemplate jdbcTemplate;
+
     @Autowired
     public EmployeeDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public List<Employee> findAll() {
-        final String sql = "select * from employee";
-        List<Employee> employees = jdbcTemplate.query(sql, new EmployeeMapper());
-        return employees;
-
     }
 
 
@@ -55,4 +48,8 @@ public class EmployeeDao {
 
     }
 
+    public Integer loadIdBySalonId(Integer salonId){
+        final String sql = "select EmployeeID from Employee where SalonId = ?";
+        return jdbcTemplate.queryForObject(sql, new EmployeeMapper(), salonId).getEmployeeId();
+    }
 }

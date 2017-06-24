@@ -1,45 +1,43 @@
 package com.aca.salon.dao;
 
+
 import com.aca.salon.model.entity.Client;
+import com.aca.salon.model.entity.Profession;
 import com.aca.salon.model.mapper.ClientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
+
 import java.sql.PreparedStatement;
-import java.util.List;
 
 /**
- * Created by Armine on 29/05/2017.
+ * Created by Armine on 14/06/2017.
  */
 @Repository
-public class ClientDao {
+public class ProfessionDao {
     private final JdbcTemplate jdbcTemplate;
-  @Autowired
-    public ClientDao(JdbcTemplate jdbcTemplate) {
+
+    @Autowired
+    public ProfessionDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
-    public int add(Client client) {
-        final String sql = "insert into Client(FirstName, LastName, PhoneNumber) values(?, ?,?)";
+    public int add(Profession profession) {
+        final String sql = "insert into profession(Name) values(?)";
         GeneratedKeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, client.getFirstName());
-            ps.setString(2, client.getLastName());
-            ps.setString(3, client.getPhoneNumber());
+            ps.setString(1, profession.getName());
             return ps;
         }, holder);
 
         return (int) holder.getKey().longValue();
     }
 
-
-    public Client loadById(Integer id) {
-        final String sql = "select * from Client where ClientID = ?";
-        return jdbcTemplate.queryForObject(sql, new ClientMapper(), id);
-
-    }
+//   public Integer getProfessionIdByName(String name){
+//        final String sql = "select * from Profession where Name= ?";
+//        jdbcTemplate.queryForObject(sql,);
+//   }
 }

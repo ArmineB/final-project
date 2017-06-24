@@ -1,11 +1,8 @@
 package com.aca.salon.dao;
 
-import com.aca.salon.model.entity.Employee;
+
 import com.aca.salon.model.entity.Reservation;
-import com.aca.salon.model.entity.Salon;
-import com.aca.salon.model.mapper.EmployeeMapper;
 import com.aca.salon.model.mapper.ReservationMapper;
-import com.aca.salon.model.mapper.SalonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

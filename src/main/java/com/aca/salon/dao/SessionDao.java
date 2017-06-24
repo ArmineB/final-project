@@ -1,8 +1,7 @@
 package com.aca.salon.dao;
 
-import com.aca.salon.model.entity.Salon;
+
 import com.aca.salon.model.entity.Session;
-import com.aca.salon.model.mapper.SalonMapper;
 import com.aca.salon.model.mapper.SessionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Armine on 12/06/2017.
@@ -47,17 +47,17 @@ public class SessionDao {
 
     public boolean isAuthorized(String token){
         List<Session> sessions = findAll();
-        List<String> tokens = new ArrayList<>();
-        boolean isFind = false;
-        for(Session session : sessions){
-            tokens.add(session.getToken());
-        }
-        for(String str : tokens){
-            if(token.equals(str))
-                isFind = true;
-            break;
-        }
+        return sessions.stream()
+                .filter(s -> token.equals(s.getToken()))
+                .findAny()
+                .map(session -> true)
+                .orElse(false);
 
-        return  isFind;
+    }
+
+    public Integer getSalonIdByToken(String token){
+        final String sql = "select  SalonId from Session where Token= ?";
+       Session session = jdbcTemplate.queryForObject(sql,new SessionMapper(), token);
+        return session.getSalonId();
     }
 }

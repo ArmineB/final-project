@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
-
-import javax.sql.rowset.serial.SerialBlob;
-import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.util.List;
 

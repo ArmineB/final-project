@@ -6,6 +6,7 @@ import com.aca.salon.service.AuthService;
 import com.aca.salon.service.EmployeeWorkloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -29,8 +30,9 @@ public class AuthRestController {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST,
-            consumes = "application/json")
+            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity registerSalon(@RequestBody Salon salon) {
+
         try {
             String token = authService.add(salon);
 

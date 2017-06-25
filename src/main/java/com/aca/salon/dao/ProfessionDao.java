@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
  * Created by Armine on 14/06/2017.
  */
 @Repository
-public class ProfessionDao {
+public class   ProfessionDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired

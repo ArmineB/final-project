@@ -5,6 +5,7 @@ import com.aca.salon.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -16,16 +17,19 @@ import java.util.List;
 public class SalonController {
 
     private List<Salon> salonList;
-    private AuthService authService;
+    private final AuthService authService;
 
     @Autowired
-    public SalonController() {
+    public SalonController(AuthService authService) {
+        this.authService = authService;
        salonList = authService.getAllSalons();
     }
 
     @RequestMapping("/")
-    public String homePage(){
-        return "index";
+    public ModelAndView homePage(){
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("salonList", salonList);
+        return modelAndView;
     }
 
 }

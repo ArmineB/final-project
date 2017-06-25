@@ -4,6 +4,7 @@ import com.aca.salon.dao.SalonDao;
 import com.aca.salon.dao.SessionDao;
 import com.aca.salon.model.entity.Salon;
 import com.aca.salon.model.entity.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -12,14 +13,14 @@ import java.util.List;
  */
 @Service
 public class AuthService {
+
     private final SalonDao salonDao;
     private  final SessionDao sessionDao;
 
-
+    @Autowired
     public AuthService(SalonDao salonDao, SessionDao sessionDao) {
         this.salonDao = salonDao;
         this.sessionDao = sessionDao;
-
     }
 
 

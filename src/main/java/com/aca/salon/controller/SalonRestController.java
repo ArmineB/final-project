@@ -31,8 +31,8 @@ public class SalonRestController {
         this.salonInfoService = salonInfoService;
     }
 
-    @RequestMapping(value = "/sId")
-    public SalonInfo getSalon(@RequestParam("sId") Integer salonId){
+    @RequestMapping(value = "/salon")
+    public SalonInfo getSalon(@RequestParam("salonId") Integer salonId){
 
          return salonInfoService.getSalonInfo(salonId);
     }

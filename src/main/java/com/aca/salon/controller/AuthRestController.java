@@ -63,12 +63,12 @@ public class AuthRestController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public ResponseEntity registerEmployeeWorkload(@RequestBody List<EmployeeWorkload> employeeWorkload,
+    public ResponseEntity registerEmployeeWorkload(@RequestBody List<EmployeeWorkload> employeeWorkloads,
                                          @RequestHeader("Authorized") String authToken) {
 
         Integer salonID = authService.getSalonIdByToken(authToken);
-        for(EmployeeWorkload employeeWorkload1 : employeeWorkload) {
-            employeeWorkloadService.add(employeeWorkload1, salonID);
+        for(EmployeeWorkload employeeWorkload : employeeWorkloads) {
+            employeeWorkloadService.add(employeeWorkload, salonID);
         }
         try {
             return ResponseEntity.ok(authToken);
